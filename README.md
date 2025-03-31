@@ -35,10 +35,10 @@ ___
 |----------------|-----------|
 | 데이터 처리    | pandas, numpy, scikit-learn |
 | 모델 실험 관리 | MLflow, MinIO (S3 호환) |
-| 자동화         | Prefect 2.x (Docker Agent), Python Script |
-| 서빙/API       | FastAPI, Uvicorn |
-| 모니터링       | Prometheus, Grafana, Slack Webhook |
-| 배포           | Docker, Docker Compose |
+| 자동화         | Prefect 2.x (Docker Agent)|
+| 서빙/API       | FastAPI, Streamlit |
+| 모니터링       | Prometheus, Grafana |
+| 배포           | Docker |
 
 ___
 
@@ -64,7 +64,6 @@ ___
 - `/predict` 엔드포인트로 RESTful API 요청 가능
 - `/metrics` 엔드포인트를 통해 Prometheus 지표 수집
 - Grafana에서 실시간 요청 수, 지연 시간, 에러율 등 모니터링 가능
-- Slack Webhook을 통한 알림 연동 구성
 
 ___
 

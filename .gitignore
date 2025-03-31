@@ -1,0 +1,25 @@
+# 1️⃣ 환경 설정 파일 (보안 관련)
+.env
+secrets.yml
+
+# 2️⃣ Python 관련 (캐시, 컴파일된 파일)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 3️⃣ 로그 및 캐시 파일 (실행 중 생성됨)
+logs/
+*.log
+*.cache
+
+# 4️⃣ IDE 설정 파일 (PyCharm, VSCode)
+.idea/
+.vscode/
+
+# 5️⃣ Docker ELK 관련 무시할 파일들 (실행 중 생성됨)
+docker-elk/logs/
+docker-elk/.env
+
+# 6️⃣ 대용량 데이터 파일 (Git 관리 비효율)
+*.db

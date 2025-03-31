@@ -1,0 +1,44 @@
+services:
+  # 1️⃣ FastAPI (API 서버)
+  fastapi:
+    build: ./fastapi
+    image: python-custom:3.9-slim
+    container_name: fastapi
+    restart: unless-stopped
+    ports:
+      - "8501:8501"  # ✅ Streamlit 웹포트 외부 노출
+      - "8000:8000"  # ✅ FastAPI 포트 외부 노출 (필요 시)
+    volumes:
+      - ../../data_pipeline:/app/data_pipeline  # 👉 로컬 코드 Mount
+    environment:
+      - AWS_ACCESS_KEY_ID=minioadmin
+      - AWS_SECRET_ACCESS_KEY=minioadmin
+      - MLFLOW_S3_ENDPOINT_URL=http://minio:9000                  
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - PREFECT_API_URL=http://prefect:4200/api
+    networks:
+      - elk
+    tty: true  # ✅ 터미널 유지
+
+    # docker exec -it fastapi /bin/bash
+    # python /app/data_pipeline/ml_pipeline/prefect/tasks/train_rf_model_with_mlflow.py
+    # python /app/data_pipeline/ml_pipeline/prefect/tasks/predict_and_log_to_mlflow.py
+    # python /app/data_pipeline/ml_pipeline/prefect/tasks/evaluate_and_log_to_mlflow.py
+    # python /app/data_pipeline/ml_pipeline/prefect/flows/sportsdrink_ml_pipeline.py
+    # docker restart fastapi
+    # streamlit run /app/data_pipeline/model_serving/streamlit_dashboard.py
+    # python /app/data_pipeline/model_serving/fastapi_main.py
+    # http://localhost:8000/predict?year=2025&month=3&day=28&age_group=10대&gender=여성&brand=포카리스웨트&channel_tier_numeric=3
+    # rate(http_requests_total{handler="/predict", method="GET"}[5m])
+
+networks:
+  elk:
+    driver: bridge
+
+# 3
+# docker-compose -f docker-compose-fastapi.yml down
+# docker-compose -f docker-compose-fastapi.yml build --no-cache
+# docker-compose -f docker-compose-fastapi.yml up -d
+
+
+

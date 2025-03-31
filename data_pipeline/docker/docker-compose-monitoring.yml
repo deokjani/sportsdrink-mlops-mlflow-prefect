@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # 1️⃣ Prometheus (모니터링)
+  prometheus:
+    image: prom/prometheus:v2.47.1
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - elk
+
+  # 2️⃣ Grafana (데이터 대시보드)
+  grafana:
+    image: grafana/grafana:10.2.2
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - elk
+    depends_on:
+      - prometheus
+
+networks:
+  elk:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+# 4
+# docker-compose -f docker-compose-monitoring.yml down
+# docker-compose -f docker-compose-monitoring.yml up -d

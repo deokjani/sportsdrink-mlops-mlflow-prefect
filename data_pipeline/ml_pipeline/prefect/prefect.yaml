@@ -1,0 +1,25 @@
+prefect-version: 2.14.0
+
+deployments:
+- name: sportsdrink-ml-deploy
+  entrypoint: flows/sportsdrink_ml_pipeline.py:sportsdrink_flow
+  work_pool:
+    name: docker-pool
+    work_queue_name: default
+    job_variables:
+      image: prefecthq/prefect-custom:2.14-python3.9
+      env:
+        ENV: production
+        AWS_ACCESS_KEY_ID: minioadmin
+        AWS_SECRET_ACCESS_KEY: minioadmin
+        MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+        ARTIFACT_ROOT: s3://mlflow-artifacts
+  tags:
+    - ml
+    - training
+  parameters: {}
+  schedule:
+    cron: "0 6 * * *"
+    timezone: "Asia/Seoul"
+    day_or: true
+    active: true

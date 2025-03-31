@@ -1,0 +1,93 @@
+{
+  "format-version" : 2,
+  "table-uuid" : "137c7b47-83f8-4ec9-92c5-21731aa759ff",
+  "location" : "s3a://deokjin-test-datalake/data/sportsdrink_youtube_search_daily_bronze.db/channel_info",
+  "last-sequence-number" : 1,
+  "last-updated-ms" : 1742749531990,
+  "last-column-id" : 6,
+  "current-schema-id" : 0,
+  "schemas" : [ {
+    "type" : "struct",
+    "schema-id" : 0,
+    "fields" : [ {
+      "id" : 1,
+      "name" : "channel_id",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 2,
+      "name" : "channel_title",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 3,
+      "name" : "subscriber_count",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 4,
+      "name" : "total_views",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 5,
+      "name" : "video_count",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 6,
+      "name" : "crawled_date",
+      "required" : false,
+      "type" : "date"
+    } ]
+  } ],
+  "default-spec-id" : 0,
+  "partition-specs" : [ {
+    "spec-id" : 0,
+    "fields" : [ ]
+  } ],
+  "last-partition-id" : 999,
+  "default-sort-order-id" : 0,
+  "sort-orders" : [ {
+    "order-id" : 0,
+    "fields" : [ ]
+  } ],
+  "properties" : {
+    "owner" : "topcd",
+    "write.parquet.compression-codec" : "zstd"
+  },
+  "current-snapshot-id" : 6056705420186701106,
+  "refs" : {
+    "main" : {
+      "snapshot-id" : 6056705420186701106,
+      "type" : "branch"
+    }
+  },
+  "snapshots" : [ {
+    "sequence-number" : 1,
+    "snapshot-id" : 6056705420186701106,
+    "timestamp-ms" : 1742749531990,
+    "summary" : {
+      "operation" : "append",
+      "spark.app.id" : "local-1742749521736",
+      "added-data-files" : "1",
+      "added-records" : "1",
+      "added-files-size" : "2107",
+      "changed-partition-count" : "1",
+      "total-records" : "1",
+      "total-files-size" : "2107",
+      "total-data-files" : "1",
+      "total-delete-files" : "0",
+      "total-position-deletes" : "0",
+      "total-equality-deletes" : "0"
+    },
+    "manifest-list" : "s3a://deokjin-test-datalake/data/sportsdrink_youtube_search_daily_bronze.db/channel_info/metadata/snap-6056705420186701106-1-ca4a7a81-a731-4873-9190-a83b439c9175.avro",
+    "schema-id" : 0
+  } ],
+  "statistics" : [ ],
+  "snapshot-log" : [ {
+    "timestamp-ms" : 1742749531990,
+    "snapshot-id" : 6056705420186701106
+  } ],
+  "metadata-log" : [ ]
+}
